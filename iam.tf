@@ -83,7 +83,7 @@ data "aws_iam_policy_document" "kinesis" {
 }
 
 resource "aws_iam_role" "kinesis" {
-  count = module.kinesis_role_label.enabled ? 1 : 0
+  count              = module.kinesis_role_label.enabled ? 1 : 0
   name               = module.kinesis_role_label.id
   assume_role_policy = data.aws_iam_policy_document.kinesis_assume[0].json
 }
