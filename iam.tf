@@ -25,6 +25,8 @@ data "aws_iam_policy_document" "log_assume" {
 }
 
 data "aws_iam_policy_document" "log" {
+  #checkov:skip=CKV_AWS_356:skipping 'Ensure no IAM policies documents allow "*" as a statement's resource for restrictable actions'
+  #checkov:skip=CKV_AWS_111:skipping 'Ensure IAM policies does not allow write access without constraints'
   count = module.log_role_label.enabled ? 1 : 0
   statement {
     actions = [

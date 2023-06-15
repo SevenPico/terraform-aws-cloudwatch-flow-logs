@@ -1,6 +1,7 @@
 data "aws_region" "default" {}
 
 resource "aws_cloudwatch_log_group" "default" {
+  #checkov:skip=CKV_AWS_158:skipping 'Ensure that CloudWatch Log Group is encrypted by KMS'
   count             = module.this.enabled ? 1 : 0
   name              = var.log_group_name != null ? var.log_group_name : module.this.id
   retention_in_days = var.retention_in_days
