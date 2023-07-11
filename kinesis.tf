@@ -15,6 +15,8 @@ module "subscription_filter_label" {
 }
 
 resource "aws_kinesis_stream" "default" {
+  #checkov:skip=CKV_AWS_43:skipping 'Ensure Kinesis Stream is securely encrypted' because it can be encrypted through variable
+  #checkov:skip=CKV_AWS_185:skipping 'Ensure Kinesis Stream is encrypted by KMS using a customer managed Key (CMK)' because it can be encrypted through variable
   count               = module.kinesis_label.enabled ? 1 : 0
   name                = module.kinesis_label.id
   shard_count         = var.shard_count
